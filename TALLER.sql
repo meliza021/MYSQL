@@ -366,5 +366,9 @@ INSERT INTO detalles_pedidos (pedido_id, producto_id, cantidad, precio_unitario)
 (19, 19, 11, 1244616.00),
 (20, 20, 12,  622308.00);
 
+-- 1.Consulta todos los datos de la tabla `usuarios` para ver la lista completa de clientes.
+SELECT * FROM usuarios;
 
+SELECT * FROM usuarios
+WHERE tipo_id = 1;
 
