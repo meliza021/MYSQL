@@ -33,3 +33,8 @@ SELECT AVG(salario) AS promedio FROM empleados;
 -- Encuentra el número de productos en cada categoría, mostrando la categoría y el número de productos
 SELECT categoria,COUNT(categoria) FROM productos
 GROUP BY categoria;
+-- Obtén una lista de productos con un precio mayor a $75 USD, mostrando solo el nombre, el precio y su respectivo precio en USD.
+SELECT nombre, precio, precio / 4126.73  FROM productos
+
+-- Lista todos los proveedores registrados.
+SELECT * FROM proveedores;
