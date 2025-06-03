@@ -22,3 +22,6 @@ SELECT nombre FROM productos
 WHERE categoria = 'Electronica'
 ORDER BY nombre ASC;
 
+-- Muestra los detalles de los pedidos que están en estado "Pendiente", incluyendo el ID del pedido, el ID del cliente y la fecha del pedido.
+SELECT * FROM pedidos
+WHERE  estado = 'pendiente'
