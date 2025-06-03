@@ -17,3 +17,8 @@ SELECT nombre,puesto,salario
 FROM empleados 
 JOIN usuarios AS u ON empleados.usuario_id = u.usuario_id
 WHERE salario > 2500000;
+-- Lista los nombres de los productos en la categoría "Electrónica", ordenados alfabéticamente
+SELECT nombre FROM productos
+WHERE categoria = 'Electronica'
+ORDER BY nombre ASC;
+
