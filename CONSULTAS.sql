@@ -5,3 +5,7 @@ WHERE tipo_id = 1;
 -- Muestra los nombres y correos electrónicos de todos los clientes que residen en la ciudad de Madrid.
 SELECT nombre,email FROM usuarios
 WHERE ciudad = 'Madrid';
+
+-- Obtén una lista de productos con un precio mayor a $100.000, mostrando solo el nombre y el precio.
+SELECT nombre,precio  FROM productos
+WHERE precio > 100000;
