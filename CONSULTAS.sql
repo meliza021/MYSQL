@@ -24,4 +24,9 @@ SELECT nombre, precio
 FROM productos
 WHERE precio = (SELECT MAX(precio) FROM productos);
 -- Obtén el total de pedidos realizados por cada cliente, mostrando el ID del cliente y el total de pedidos.
-SELECT estado, FROM pedidos
+SELECT cliente_id, COUNT(pedido_id) AS total_pedidos
+FROM pedidos
+GROUP BY cliente_id;
+
+-- Calcula el promedio de salario de todos los empleados en la empresa.
+SELECT AVG(salario) AS promedio FROM empleados;
