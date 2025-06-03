@@ -30,3 +30,6 @@ GROUP BY cliente_id;
 
 -- Calcula el promedio de salario de todos los empleados en la empresa.
 SELECT AVG(salario) AS promedio FROM empleados;
+-- Encuentra el número de productos en cada categoría, mostrando la categoría y el número de productos
+SELECT categoria,COUNT(categoria) FROM productos
+GROUP BY categoria;
