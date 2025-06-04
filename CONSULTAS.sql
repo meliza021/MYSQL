@@ -69,10 +69,19 @@ JOIN productos AS pr ON de.producto_id = pr.producto_id
 
 -- Encuentra los nombres de los clientes y los nombres de los empleados que gestionaron sus pedidos
 
- SELECT em.nombre
- FROM usuarios AS em
- JOIN tipos_usuarios AS us ON em.tipo_id = us.tipo_id
+ SELECT us.nombre AS 'Cliente',
+ em_usuario.nombre AS 'Empleado'
+ FROM pedidos AS pe
+ JOIN usuarios AS us ON pe.cliente_id = us.usuario_id
+ JOIN empleados AS em ON pe.empleado_id = em.empleado_id
+ JOIN usuarios AS em_usuario ON em.usuario_id = em_usuario.usuario_id
 
-SELECT * FROM usuarios;
-SELECT* FROM tipos_usuarios;
+-- 1. Muestra todos los pedidos y, si existen, los productos en cada pedido, incluyendo los pedidos sin productos usando `LEFT JOIN`
+SELECT pe.pedido_id,
+pe.cliente_id,
+pe.empleado_id,
+pr.nombre 
+FROM  pedidos AS pe 
+LEFT JOIN detalles_pedidos AS de ON de.pedido_id = pe.pedido_id
+LEFT JOIN productos AS pr ON pr.producto_id = de.producto_id
 
