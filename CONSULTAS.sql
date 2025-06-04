@@ -1,3 +1,5 @@
+-- Consultas básicas
+-- Active: 1749066624531@@127.0.0.1@3307@TALLER
 
 -- Obtén una lista de productos con un precio mayor a $100.000, mostrando solo el nombre y el precio.
 SELECT nombre,precio  FROM productos
@@ -38,3 +40,39 @@ SELECT nombre, precio, precio / 4126.73  FROM productos
 
 -- Lista todos los proveedores registrados.
 SELECT * FROM proveedores;
+-- Encuentra el número de productos en cada categoría, mostrando la categoría y el número de productos
+SELECT categoria,COUNT(categoria) FROM productos
+GROUP BY categoria;
+-- Obtén una lista de productos con un precio mayor a $75 USD, mostrando solo el nombre, el precio y su respectivo precio en USD.
+SELECT nombre, precio, precio / 4126.73  FROM productos
+
+-- Lista todos los proveedores registrados.
+SELECT * FROM proveedores;
+
+
+-- Consultas multitabla joins
+-- Encuentra los nombres de los clientes y los detalles de sus pedidos.
+SELECT us.nombre, 
+d.pedido_id,
+d.detalle_id,
+d.cantidad,
+d.precio_unitario
+FROM usuarios AS us
+JOIN pedidos AS f ON f.cliente_id = us.usuario_id 
+JOIN detalles_pedidos AS d ON d.pedido_id = f.pedido_id
+
+-- Lista todos los productos pedidos junto con el precio unitario de cada pedido
+SELECT pr.nombre,
+de.precio_unitario
+FROM detalles_pedidos AS de 
+JOIN productos AS pr ON de.producto_id = pr.producto_id
+
+-- Encuentra los nombres de los clientes y los nombres de los empleados que gestionaron sus pedidos
+
+ SELECT em.nombre
+ FROM usuarios AS em
+ JOIN tipos_usuarios AS us ON em.tipo_id = us.tipo_id
+
+SELECT * FROM usuarios;
+SELECT* FROM tipos_usuarios;
+
