@@ -178,3 +178,15 @@ LEFT JOIN
     productos AS po ON pro.producto_id =  po.producto_id
 WHERE po.nombre IS NULL
 
+-- Contar cuántos proveedores tiene cada producto.
+SELECT
+    p.nombre AS nombre_producto,
+    COUNT(DISTINCT pp.proveedor_id) AS numero_de_proveedores
+FROM
+    productos AS p
+LEFT JOIN
+    proveedores_productos AS pp ON p.producto_id = pp.producto_id
+GROUP BY
+    p.nombre
+ORDER BY
+    p.nombre;
