@@ -167,3 +167,14 @@ JOIN
 WHERE pr.nombre = 'Tech Supplies S.A.'
 
 -- Lista los proveedores que no están asociados a ningún producto (es decir, que aún no suministran).
+SELECT 
+    pr.nombre,
+    po.nombre
+FROM
+    proveedores AS pr
+LEFT JOIN
+    proveedores_productos AS pro ON pr.proveedor_id = pro.proveedor_id
+LEFT JOIN 
+    productos AS po ON pro.producto_id =  po.producto_id
+WHERE po.nombre IS NULL
+
