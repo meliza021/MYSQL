@@ -1,4 +1,4 @@
--- Active: 1748438061422@@127.0.0.1@3307@TALLER
+-- Active: 1749066624531@@127.0.0.1@3307@TALLER
 -- Consultas básicas
 
 
@@ -141,3 +141,29 @@ LEFT JOIN
     detalles_pedidos AS de ON pe.pedido_id = de.pedido_id
 LEFT JOIN
     productos AS pr ON de.producto_id = pr.producto_id;
+
+
+-- Listar todos los proveedores que suministran un determinado producto.
+SELECT 
+    pr.nombre,
+    po.nombre
+FROM
+    proveedores AS pr
+JOIN
+    proveedores_productos AS pro ON pr.proveedor_id = pro.proveedor_id
+JOIN 
+    productos AS po ON pro.producto_id =  po.producto_id;
+
+-- Obtener todos los productos que ofrece un proveedor específico.
+SELECT 
+    pr.nombre,
+    po.nombre
+FROM
+    proveedores AS pr
+JOIN
+    proveedores_productos AS pro ON pr.proveedor_id = pro.proveedor_id
+JOIN 
+    productos AS po ON pro.producto_id =  po.producto_id
+WHERE pr.nombre = 'Tech Supplies S.A.'
+
+-- Lista los proveedores que no están asociados a ningún producto (es decir, que aún no suministran).
