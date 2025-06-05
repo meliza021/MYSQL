@@ -203,3 +203,36 @@ WHERE proveedor_id NOT IN (
 SELECT * FROM proveedores;
 SELECT * FROM proveedores_productos;
 
+SELECT * FROM productos;
+
+-- Para un proveedor determinado (p. ej. `proveedor_id = 3`), muestra el nombre de todos los productos que suministra.
+    pro.nombre AS Producto,
+    pr.nombre AS Proveedor
+FROM proveedores_productos ppr
+JOIN proveedores pr ON pr.proveedor_id = ppr.proveedor_id
+JOIN productos pro ON pro.producto_id = ppr.producto_id
+WHERE pr.proveedor_id = 3;
+
+-- Para un producto específico (p. ej. `producto_id = 1`), muestra todos los proveedores que lo distribuyen, con sus datos de contacto.
+
+SELECT 
+    pro.nombre AS Producto,
+    pr.nombre AS Proveedor
+FROM proveedores_productos ppr
+JOIN proveedores pr ON pr.proveedor_id = ppr.proveedor_id
+JOIN productos pro ON pro.producto_id = ppr.producto_id
+WHERE pro.producto_id = 1;
+
+-- Cuenta cuántos proveedores tiene cada producto, listando `producto_id`, `nombre` y `cantidad_proveedores`.
+SELECT 
+    pr.nombre,
+    COUNT(pro.proveedor_id) AS total_provedores
+FROM 
+    productos AS pr
+JOIN 
+    proveedores_productos AS pro ON pr.producto_id = pro.producto_id
+JOIN
+    productos AS du ON  pro.producto_id = du.producto_id
+GROUP BY pr.nombre
+
+-- Cuenta cuántos productos suministra cada proveedor, mostrando `proveedor_id`, `nombre_proveedor` y `total_productos`.
