@@ -129,4 +129,15 @@ FROM
     usuarios AS us
 CROSS JOIN
     productos AS pr;
--- Encuentra los nombres de los clientes y los productos que han comprado, si existen, incluyendo los clientes que no han realizado pedidos usando `LEFT JOIN`.
+-- Encuentra los nombres de los clientes y los productos que han comprado, si existen, incluyendo los clientes que no han realizado pedidos usando `LEFT JOIN`. 
+SELECT
+    us.nombre AS nombre_cliente,
+    pr.nombre AS nombre_producto
+FROM
+    usuarios AS us
+LEFT JOIN
+    pedidos AS pe ON us.usuario_id = pe.cliente_id
+LEFT JOIN
+    detalles_pedidos AS de ON pe.pedido_id = de.pedido_id
+LEFT JOIN
+    productos AS pr ON de.producto_id = pr.producto_id;
