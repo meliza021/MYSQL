@@ -190,3 +190,16 @@ GROUP BY
     p.nombre
 ORDER BY
     p.nombre;
+
+-- Lista los proveedores que no están asociados a ningún producto (es decir, que aún no suministran).
+SELECT 
+    *
+FROM
+    proveedores AS pr
+WHERE proveedor_id NOT IN (
+    SELECT proveedor_id FROM proveedores_productos
+) 
+
+SELECT * FROM proveedores;
+SELECT * FROM proveedores_productos;
+
