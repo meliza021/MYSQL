@@ -1,5 +1,5 @@
 -- Consultas básicas
--- Active: 1749066624531@@127.0.0.1@3307@TALLER
+-- Active: 1748438061422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@mysql4531@@127.0.0.1@3307@TALLER
 
 -- Obtén una lista de productos con un precio mayor a $100.000, mostrando solo el nombre y el precio.
 SELECT nombre,precio  FROM productos
@@ -85,3 +85,22 @@ FROM  pedidos AS pe
 LEFT JOIN detalles_pedidos AS de ON de.pedido_id = pe.pedido_id
 LEFT JOIN productos AS pr ON pr.producto_id = de.producto_id
 
+-- Encuentra los productos y, si existen, los detalles de pedidos en los que no se ha incluido el producto usando `RIGHT JOIN`.
+SELECT
+    pr.nombre,
+    de.detalle_id,
+    de.producto_id 
+FROM
+    productos AS pr
+RIGHT JOIN
+    detalles_pedidos AS de ON pr.producto_id = de.producto_id;
+
+-- Lista todos los empleados junto con los pedidos que han gestionado, si existen, usando `LEFT JOIN` para ver los empleados sin pedidos.
+SELECT
+    em.empleado_id,
+    pe.pedido_id,
+    pe.fecha_pedido
+FROM
+    empleados AS em
+LEFT JOIN
+    pedidos AS pe ON em.empleado_id = pe.empleado_id;
