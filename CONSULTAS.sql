@@ -1,5 +1,5 @@
 -- Consultas básicas
--- Active: 1748438061422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@restore_db1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@mysql4531@@127.0.0.1@3307@TALLER
+-- Active: 1748438061422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@restore_db1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@mysql4531@@127.0.0.1@3307@TALLER
 
 -- Obtén una lista de productos con un precio mayor a $100.000, mostrando solo el nombre y el precio.
 SELECT nombre,precio  FROM productos
@@ -110,6 +110,15 @@ SELECT em.empleado_id,
 FROM empleados AS em
 LEFT JOIN  pedidos AS pe ON  em.empleado_id = pe.empleado_id
 WHERE pedido_id IS NULL;
+-- Calcula el total gastado en cada pedido, mostrando el ID del pedido y el total, usando `JOIN`.
+SELECT pe.pedido_id,
+    de.producto_id,
+    de.precio_unitario,
+    de.cantidad
+    SUM(precio_unitario) * SUM(cantidad) AS 
+FROM 
+    pedidos AS pe
+LEFT JOIN detalles_pedidos AS de ON pe.pedido_id = de.pedido_id
+GROUP pedido_id
 
-SHOW TABLES;
 USE TALLER;
