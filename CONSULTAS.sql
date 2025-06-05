@@ -1,5 +1,5 @@
 -- Consultas básicas
--- Active: 1748438061422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@mysql4531@@127.0.0.1@3307@TALLER
+-- Active: 1748438061422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@restore_db1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@TALLER1422@@127.0.0.1@3307@mysql4531@@127.0.0.1@3307@TALLER
 
 -- Obtén una lista de productos con un precio mayor a $100.000, mostrando solo el nombre y el precio.
 SELECT nombre,precio  FROM productos
@@ -104,3 +104,12 @@ FROM
     empleados AS em
 LEFT JOIN
     pedidos AS pe ON em.empleado_id = pe.empleado_id;
+-- Encuentra los empleados que no han gestionado ningún pedido usando un `LEFT JOIN` combinado con `WHERE`.
+SELECT em.empleado_id,
+    pe.pedido_id
+FROM empleados AS em
+LEFT JOIN  pedidos AS pe ON  em.empleado_id = pe.empleado_id
+WHERE pedido_id IS NULL;
+
+SHOW TABLES;
+USE TALLER;
