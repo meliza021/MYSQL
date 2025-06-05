@@ -236,3 +236,18 @@ JOIN
 GROUP BY pr.nombre
 
 -- Cuenta cuántos productos suministra cada proveedor, mostrando `proveedor_id`, `nombre_proveedor` y `total_productos`.
+SELECT
+    ps.nombre AS nombre_producto,
+    pro.nombre AS nombre_proveedor,
+    ps.stock,
+    COUNT(pr.proveedor_id) AS numero_de_entradas
+FROM
+    productos AS ps
+JOIN
+    proveedores_productos AS pr ON ps.producto_id = pr.producto_id
+JOIN
+    proveedores AS pro ON pr.proveedor_id = pro.proveedor_id
+GROUP BY
+    ps.nombre, pro.nombre, ps.stock
+ORDER BY
+    ps.nombre, pro.nombre;
